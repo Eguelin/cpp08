@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:17:44 by eguelin           #+#    #+#             */
-/*   Updated: 2023/12/09 19:54:31 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/10 18:03:25 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,21 @@ Span	&Span::operator=( const Span &src )
 		this->_storage.push_back(value);
 	}
 
-	int	Span::shortestSpan( void )
+	void	Span::addNumber( int *tab, unsigned int size )
+	{
+		if (this->_size_max < this->_storage.size() + size)
+			throw (storageIsFull());
+
+		this->_storage.insert(this->_storage.end(), tab, tab + size);
+	}
+
+	unsigned int	Span::shortestSpan( void )
 	{
 		if (this->_storage.empty())
 			throw (noValueToCompare());
+
+		if (this->_storage.size() == 1)
+			return (0);
 
 		std::vector<int>	tmpVector = this->_storage;
 		int					shortestSpan = std::numeric_limits<int>::max();
@@ -74,30 +85,23 @@ Span	&Span::operator=( const Span &src )
 		{
 			int	tmp = tmpVector[i + 1] - tmpVector[i];
 
-			if (tmp > 0 && tmp < shortestSpan)
+			if (tmp < shortestSpan)
 				shortestSpan = tmp;
 		}
 
 		return (shortestSpan);
 	}
 
-	int	Span::longestSpan( void )
+	unsigned int	Span::longestSpan( void )
 	{
 		if (this->_storage.empty())
 			throw (noValueToCompare());
 
-		int	max = this->_storage[0];
-		int	min = this->_storage[0];
+		std::vector<int>	tmpVector = this->_storage;
 
-		for (unsigned int i = 0; i < this->_storage.size() ; i++)
-		{
-			if (max < this->_storage[i])
-				max = this->_storage[i];
-			if (min > this->_storage[i])
-				min = this->_storage[i];
-		}
+		std::sort(tmpVector.begin(), tmpVector.end());
 
-		return (max - min);
+		return (tmpVector[tmpVector.size() - 1] - tmpVector[0]);
 	}
 
 /* ************************************************************************** */

@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:17:44 by eguelin           #+#    #+#             */
-/*   Updated: 2023/12/09 19:45:59 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/12/10 15:33:32 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ class Span
 
 		Span	&operator=( const Span &src );
 
-		void	addNumber( int value );
-		int		shortestSpan( void );
-		int		longestSpan( void );
+		void			addNumber( int value );
+		void			addNumber( int *tab, unsigned int size );
+		unsigned int	shortestSpan( void );
+		unsigned int	longestSpan( void );
+
 
 		class storageIsFull: public std::exception
 		{
