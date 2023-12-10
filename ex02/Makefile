@@ -6,21 +6,21 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 15:53:52 by eguelin           #+#    #+#              #
-#    Updated: 2023/12/10 19:00:00 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/12/10 19:51:36 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all clean fclean re
-.SILENT:
+# .SILENT:
 
 # **************************************************************************** #
 #                                   Variable                                   #
 # **************************************************************************** #
 
-NAME	= span
+NAME	= MutantStack
 OBJ_DIR	= .obj/
-CLS_DIR = class/
 SRC_DIR	= src/
+CLS_DIR = class/
 CC		= c++
 CFLAGS	= -Wall -Werror -Wextra -std=c++98
 INC		= -I $(CLS_DIR)
@@ -52,15 +52,9 @@ FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(DEFAULT)done on $(YELLOW)$(sh
 #                                    Sources                                   #
 # **************************************************************************** #
 
-CLS_FILES	= Span.cpp
-
-ALL_FILES	= $(addprefix $(CLS_DIR), $(CLS_FILES))
-
 SRC_FILES	= main.cpp
 
-ALL_FILES	+= $(addprefix $(SRC_DIR), $(SRC_FILES))
-
-OBJ_FILES	= $(addprefix $(OBJ_DIR), $(ALL_FILES:.cpp=.o))
+OBJ_FILES	= $(addprefix $(OBJ_DIR), $(SRC_FILES:.cpp=.o))
 
 DEP_FILES	= $(OBJ_FILES:.o=.d)
 
@@ -74,7 +68,7 @@ $(NAME): $(OBJ_FILES)
 	$(CC) $(CFLAGS) $(INC) $(OBJ_FILES) -o $(NAME)
 	echo $(COMP_MSG)
 
-$(OBJ_DIR)%.o: %.cpp | $(OBJ_DIR)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INC) -MMD -c $< -o $@
 
 clean:
