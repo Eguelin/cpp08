@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:17:44 by eguelin           #+#    #+#             */
-/*   Updated: 2023/12/10 18:03:25 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2024/01/19 15:09:28 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,12 @@ Span	&Span::operator=( const Span &src )
 			return (0);
 
 		std::vector<int>	tmpVector = this->_storage;
-		int					shortestSpan = std::numeric_limits<int>::max();
 
 		std::sort(tmpVector.begin(), tmpVector.end());
 
-		for (unsigned int i = 0; i < tmpVector.size() - 1; i++)
-		{
-			int	tmp = tmpVector[i + 1] - tmpVector[i];
+		std::adjacent_difference(tmpVector.begin(), tmpVector.end(), tmpVector.begin());
 
-			if (tmp < shortestSpan)
-				shortestSpan = tmp;
-		}
-
-		return (shortestSpan);
+		return (*std::min_element(tmpVector.begin() + 1, tmpVector.end()));
 	}
 
 	unsigned int	Span::longestSpan( void )

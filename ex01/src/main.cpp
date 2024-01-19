@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 15:48:04 by eguelin           #+#    #+#             */
-/*   Updated: 2023/12/10 18:01:07 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2024/01/19 14:44:37 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int main( void )
 		std::cout << sp.longestSpan() << std::endl;
 	}
 	{
-		Span	sp = Span(1000000);
-		int		ranges[1000000];
+		Span	sp = Span(100);
+		int		ranges[100];
 		timeval	currentTime;
 
-		for (int i = 0; i < 1000000; i++)
+		for (int i = 0; i < 100; i++)
 		{
 			gettimeofday(&currentTime, NULL);
 			std::srand(static_cast<unsigned int>(currentTime.tv_usec));
@@ -52,7 +52,7 @@ int main( void )
 			}
 		}
 
-		sp.addNumber(ranges, 1000000);
+		sp.addNumber(ranges, 100);
 
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;

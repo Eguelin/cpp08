@@ -6,7 +6,7 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 15:53:52 by eguelin           #+#    #+#              #
-#    Updated: 2023/12/11 13:50:28 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2024/01/19 15:16:46 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,8 @@ SRC_FILES	= main.cpp
 OBJ_FILES	= $(addprefix $(OBJ_DIR), $(SRC_FILES:.cpp=.o))
 
 DEP_FILES	= $(OBJ_FILES:.o=.d)
+
+ALL_OUT_DIRS	= $(sort $(dir $(OBJ_FILES)))
 
 # **************************************************************************** #
 #                                     Rules                                    #
