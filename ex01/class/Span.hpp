@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:17:44 by eguelin           #+#    #+#             */
-/*   Updated: 2024/01/19 15:09:33 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2024/02/13 17:40:09 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ class Span
 
 		Span( void );
 		Span( const Span &src );
-		Span( unsigned int N );
+		Span( const size_t N );
 		~Span( void );
 
 		Span	&operator=( const Span &src );
 
 		void			addNumber( int value );
-		void			addNumber( int *tab, unsigned int size );
+		void			addNumber( std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end );
 		unsigned int	shortestSpan( void );
 		unsigned int	longestSpan( void );
 
@@ -50,7 +50,7 @@ class Span
 	private:
 
 		std::vector<int>	_storage;
-		unsigned int		_size_max;
+		size_t				_size;
 };
 
 #endif

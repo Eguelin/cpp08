@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 15:48:04 by eguelin           #+#    #+#             */
-/*   Updated: 2024/02/07 18:52:10 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2024/02/13 17:39:16 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,25 @@ int main( void )
 		Span	sp = Span(5);
 
 		sp.addNumber(6);
+		std::cout << "Added 6" << std::endl;
 		sp.addNumber(3);
+		std::cout << "Added 3" << std::endl;
 		sp.addNumber(-17);
+		std::cout << "Added -17" << std::endl;
 		sp.addNumber(-18);
+		std::cout << "Added -18" << std::endl;
 		sp.addNumber(11);
+		std::cout << "Added 11" << std::endl;
 
-		std::cout << sp.shortestSpan() << std::endl;
-		std::cout << sp.longestSpan() << std::endl;
+
+		std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
 	}
+	std::cout << std::endl;
 	{
-		Span	sp = Span(100);
-		int		ranges[100];
-		timeval	currentTime;
+		Span				sp = Span(100);
+		std::vector<int>	ranges(100);
+		timeval				currentTime;
 
 		for (int i = 0; i < 100; i++)
 		{
@@ -52,11 +59,13 @@ int main( void )
 			}
 		}
 
-		sp.addNumber(ranges, 100);
+		sp.addNumber(ranges.begin(), ranges.end());
+		std::cout << "Added 100 random numbers" << std::endl;
 
-		std::cout << sp.shortestSpan() << std::endl;
-		std::cout << sp.longestSpan() << std::endl;
+		std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
 	}
+	std::cout << std::endl;
 	{
 		try
 		{
@@ -69,18 +78,7 @@ int main( void )
 			std::cout << e.what() << std::endl;
 		}
 	}
-	{
-		try
-		{
-			Span	sp(5);
-
-			sp.shortestSpan();
-		}
-		catch(const std::exception &e)
-		{
-			std::cout << e.what() << std::endl;
-		}
-	}
+	std::cout << std::endl;
 	{
 		try
 		{
@@ -94,7 +92,8 @@ int main( void )
 			std::cout << e.what() << std::endl;
 		}
 	}
-		{
+	std::cout << std::endl;
+	{
 		try
 		{
 			Span	sp(5);
