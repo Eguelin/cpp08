@@ -6,12 +6,39 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 15:48:04 by eguelin           #+#    #+#             */
-/*   Updated: 2023/12/11 14:04:34 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2024/02/13 17:36:10 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 #include <vector>
+
+void	constTest( const MutantStack<int> &mstack )
+{
+	MutantStack<int>::const_iterator it = mstack.cbegin();
+	MutantStack<int>::const_iterator ite = mstack.cend();
+
+	std::cout << "constTest:" << std::endl;
+
+	while (it != ite)
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}
+
+	std::cout << std::endl;
+
+	MutantStack<int>::const_reverse_iterator rit = mstack.crbegin();
+	MutantStack<int>::const_reverse_iterator rite = mstack.crend();
+
+	while (rit != rite)
+	{
+		std::cout << *rit << std::endl;
+		++rit;
+	}
+}
+
+
 
 int main( void )
 {
@@ -42,6 +69,21 @@ int main( void )
 			++it;
 		}
 
+		std::cout << std::endl;
+
+		MutantStack<int>::reverse_iterator rit = mstack.rbegin();
+		MutantStack<int>::reverse_iterator rite = mstack.rend();
+
+		while (rit != rite)
+		{
+			std::cout << *rit << std::endl;
+			++rit;
+		}
+
+		std::cout << std::endl;
+
+		constTest(mstack);
+
 		std::stack<int> s(mstack);
 	}
 	std::cout << std::endl;
@@ -71,7 +113,17 @@ int main( void )
 			std::cout << *it << std::endl;
 			++it;
 		}
-	}
 
+		std::cout << std::endl;
+
+		std::vector<int>::reverse_iterator rit = mstack.rbegin();
+		std::vector<int>::reverse_iterator rite = mstack.rend();
+
+		while (rit != rite)
+		{
+			std::cout << *rit << std::endl;
+			++rit;
+		}
+	}
 	return (0);
 }
